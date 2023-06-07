@@ -3,7 +3,185 @@ Object-oriented programming (OOP) is a programming paradigm or approach that org
 
 In OOP, a class is a blueprint or template for creating objects. It defines the properties (attributes or data) and behaviors (methods or functions) that objects of that class possess. An object is an instance of a class, created using the class definition, and it can have its own unique state and behavior while still belonging to a certain class.
 
-Let's explore the main principles of object-oriented programming (OOP) and how they apply to C#:
+Classes interact with each other to accomplish one or more features of an application. You can define the relationship between classes while designing the classes of your application. These relationships define how classes or objects interact with each other, share information, and collaborate to achieve a specific functionality.
+
+Let's explore each relationship with realistic examples in C#:
+
+1. Inheritance:
+    Inheritance represents an "is-a" relationship between classes. The derived class inherits properties and behaviors from the base class. Let's consider an example:
+
+    ```csharp
+    public class Animal
+    {
+        public string Name { get; set; }
+        public virtual void MakeSound()
+        {
+            Console.WriteLine("The animal makes a sound.");
+        }
+    }
+
+    public class Dog : Animal
+    {
+        public override void MakeSound()
+        {
+            Console.WriteLine("The dog barks.");
+        }
+    }
+    ```
+
+    In this example, the `Dog` class inherits from the `Animal` class. The `Dog` class extends the behavior of the `Animal` class and overrides the `MakeSound` method with its specific implementation.
+    <br>
+
+2. Aggregation:
+    Aggregation represents a "has-a" relationship between classes, where one class contains a collection of other objects. Let's consider an example where a `Department` class contains a collection of `Employee` objects:
+
+    ```csharp
+    public class Department
+    {
+        public string Name { get; set; }
+        public List<Employee> Employees { get; set; }
+    }
+
+    public class Employee
+    {
+        public string Name { get; set; }
+        // Other employee properties
+    }
+    ```
+
+    In this example, the `Department` class has an aggregation relationship with the `Employee` class. The `Department` class has a collection of `Employee` objects stored in the `Employees` property.
+    <br>
+    
+3. Composition (Part-Whole):
+    Composition represents a strong form of aggregation, where one class (the whole) is composed of one or more instances of another class (the part). The part objects cannot exist independently of the whole object. Let's consider an example:
+
+    ```csharp
+    public class Car
+    {
+        private Engine engine;
+
+        public Car()
+        {
+            engine = new Engine();
+        }
+    }
+
+    public class Engine
+    {
+        // Engine properties and methods
+    }
+    ```
+
+    In this example, the `Car` class is composed of an `Engine` object. The `Car` class owns the `Engine` instance, and the `Engine` instance cannot exist independently of the `Car` instance.
+    <br>
+    
+4. Dependency:
+    Dependency represents a relationship where one class depends on another class. Let's consider an example where a `Customer` class depends on a `Logger` class:
+
+    ```csharp
+    public class Customer
+    {
+        private Logger logger;
+
+        public Customer(Logger logger)
+        {
+            this.logger = logger;
+        }
+
+        public void DoSomething()
+        {
+            logger.Log("Customer is doing something.");
+        }
+    }
+
+    public class Logger
+    {
+        public void Log(string message)
+        {
+            Console.WriteLine(message);
+        }
+    }
+    ```
+
+    In this example, the `Customer` class depends on the `Logger` class. The `Customer` class receives an instance of the `Logger` class through its constructor, allowing it to use the logging functionality provided by the `Logger` class.
+    <br>
+    
+5. Realization/Implementation:
+    Realization represents the relationship between an interface and a class that implements that interface. Let's consider an example where a `Shape` interface is realized by a `Circle` class:
+
+    ```csharp
+    public interface Shape
+    {
+        void Draw();
+    }
+
+    public class Circle : Shape
+    {
+        public void Draw()
+        {
+            Console.WriteLine("Drawing a circle.");
+        }
+    }
+    ```
+
+    In this example, the `Circle` class realizes the `Shape` interface by implementing the `Draw` method defined in the interface.
+    <br>
+    
+6. Association (Bi-Directional):
+    Association represents a relationship between classes where one class is related to another class. Let's consider an example where a `Student` class is associated with a `School` class,
+
+    and the `School` class also maintains a reference to the associated `Student` objects:
+
+    ```csharp
+    public class Student
+    {
+        public string Name { get; set; }
+        public School School { get; set; }
+    }
+
+    public class School
+    {
+        public string Name { get; set; }
+        public List<Student> Students { get; set; }
+    }
+    ```
+
+    In this example, the `Student` class is associated with the `School` class, and the `School` class maintains a list of associated `Student` objects. This allows navigation between the `Student` and `School` objects in both directions.
+    <br>
+    
+7. Generalization/Specialization:
+    Generalization represents a relationship where multiple classes share common characteristics, and a generalized superclass captures those commonalities. Specialization, also known as inheritance, represents the relationship where classes inherit from a generalized superclass and add specific features or behaviors. Let's consider an example:
+
+    ```csharp
+    public abstract class Vehicle
+    {
+        public string Brand { get; set; }
+        public abstract void Drive();
+    }
+
+    public class Car : Vehicle
+    {
+        public override void Drive()
+        {
+            Console.WriteLine("Driving a car.");
+        }
+    }
+
+    public class Bike : Vehicle
+    {
+        public override void Drive()
+        {
+            Console.WriteLine("Riding a bike.");
+        }
+    }
+    ```
+
+    In this example, the `Vehicle` class captures common properties and behaviors shared by different types of vehicles. The `Car` and `Bike` classes specialize the `Vehicle` class by inheriting from it and providing their specific implementations of the `Drive` method.
+
+These examples demonstrate how the different relationships can be implemented in C# to model real-world scenarios and create well-structured and maintainable object-oriented code.
+
+## Four pillars of OOP
+Now let's explore the main principles of object-oriented programming (OOP) and how they apply to C#:
 
 1. Encapsulation:
     Encapsulation is the concept of bundling data and related behaviors (methods) together within an object. In C#, you can achieve encapsulation using classes. The class acts as a container for data members (fields) and member functions (methods). You can define access modifiers such as public, private, protected, or internal to control the visibility and accessibility of these members. Encapsulation helps in hiding the internal implementation details of an object and provides a clear interface for interacting with it.

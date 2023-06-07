@@ -485,8 +485,6 @@ The SOLID principles are a set of five design principles that provide guidelines
     }
     ```
 
-    In this example, the `PaymentProcessor` class depends on the abstraction (`IPaymentGateway`) instead of concrete implementations. This allows for easier swapping of payment gateways (e.g., `PayPal
-
-    Gateway` or `StripeGateway`) and promotes loose coupling between the `PaymentProcessor` and the specific payment gateway implementation.
+    In this example, the `PaymentProcessor` class depends on the abstraction (`IPaymentGateway`) instead of concrete implementations. This allows for easier swapping of payment gateways (e.g., `PayPalGateway` or `StripeGateway`) and promotes loose coupling between the `PaymentProcessor` and the specific payment gateway implementation.
 
     These code examples demonstrate how the SOLID principles can be implemented in C# to create maintainable, extensible, and loosely coupled code. Applying these principles helps to improve code quality, flexibility, and ease of maintenance in real-world scenarios.
